@@ -265,7 +265,7 @@ const PackageDetailPage: React.FC<{ packageId: string }> = ({ packageId }) => {
       <Container maxWidth="lg" className="py-16">
         <Grid container spacing={8}>
           {/* Left Column - Details */}
-          <Grid item xs={12} md={8}>
+          <Grid size={{ xs: 12, md: 8 }}>
             {/* Who This Is For */}
             <Card className="mb-8 shadow-lg border-l-4" sx={{ borderColor: currentPackage.color }}>
               <CardContent className="p-8">
@@ -328,7 +328,7 @@ const PackageDetailPage: React.FC<{ packageId: string }> = ({ packageId }) => {
                 </Typography>
                 <Grid container spacing={3}>
                   {currentPackage.whatThisDelivers.map((item, index) => (
-                    <Grid item xs={12} sm={6} key={index}>
+                    <Grid size={{ xs: 12, sm: 6 }} key={index}>
                       <div className="flex items-start">
                         <CheckCircleIcon
                           sx={{
@@ -390,7 +390,7 @@ const PackageDetailPage: React.FC<{ packageId: string }> = ({ packageId }) => {
           </Grid>
 
           {/* Right Column - Sidebar */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             {/* The Outcome */}
             <Card
               className="mb-6 shadow-xl"

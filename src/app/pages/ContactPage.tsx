@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState } from 'react';
 import {
   Container,
@@ -11,10 +12,13 @@ import {
   CardContent,
   MenuItem,
   Alert,
+  Stack,
+  Paper,
 } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import SendIcon from '@mui/icons-material/Send';
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -31,6 +35,7 @@ const ContactPage: React.FC = () => {
     { value: 'foundation', label: 'Foundation - Start-Up & Readiness' },
     { value: 'strengthen', label: 'Strengthen - Institutional Systems' },
     { value: 'assure', label: 'Assure - Strategic & Donor Support' },
+    { value: 'secure', label: 'Secure - HEAT & EMT Training' },
     { value: 'ethics', label: 'Ethics - Corporate & Workplace' },
     { value: 'consultation', label: 'General Consultation' },
   ];
@@ -62,72 +67,61 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-white to-gray-50">
-      {/* Hero Section */}
+    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', pb: 8 }}>
+      
+      {/* 1. HERO SECTION */}
       <Box
-        className="bg-gradient-to-r from-[#00897b] to-[#1e3a5f] text-white py-20"
         sx={{
+          background: (theme) => `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
+          color: 'white',
+          py: { xs: 8, md: 12 },
           position: 'relative',
           overflow: 'hidden',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage:
-              'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)',
-          },
         }}
       >
-        <Container maxWidth="lg" className="relative z-10">
-          <Typography
-            variant="h1"
-            className="text-4xl md:text-6xl font-bold mb-6 text-center"
-            sx={{ fontFamily: 'Playfair Display, serif' }}
-          >
+        {/* Background Pattern Overlay */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0, left: 0, right: 0, bottom: 0,
+            opacity: 0.1,
+            backgroundImage: 'radial-gradient(circle at 50% 50%, #ffffff 2px, transparent 2px)',
+            backgroundSize: '30px 30px',
+          }}
+        />
+        
+        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
+          <Typography variant="h1" sx={{ mb: 3, color: 'white' }}>
             Get In Touch
           </Typography>
-          <Typography
-            variant="h5"
-            className="text-xl md:text-2xl text-center text-white/90 max-w-3xl mx-auto"
-            sx={{ fontFamily: 'Source Serif Pro, serif' }}
-          >
-            Ready to strengthen your safeguarding systems? We're here to help you
-            get started.
+          <Typography variant="h5" sx={{ maxWidth: '800px', mx: 'auto', opacity: 0.9, fontWeight: 400 }}>
+            Ready to strengthen your safeguarding systems? We're here to help you get started.
           </Typography>
         </Container>
       </Box>
 
-      <Container maxWidth="lg" className="py-16">
-        <Grid container spacing={8}>
-          {/* Contact Form */}
-          <Grid item xs={12} md={7}>
-            <Card className="shadow-xl border border-gray-100">
-              <CardContent className="p-8">
-                <Typography
-                  variant="h3"
-                  className="text-3xl font-bold mb-2 text-[#1e3a5f]"
-                  sx={{ fontFamily: 'Playfair Display, serif' }}
-                >
-                  Send Us a Message
-                </Typography>
-                <Typography
-                  variant="body1"
-                  className="text-gray-600 mb-6"
-                  sx={{ fontFamily: 'Source Serif Pro, serif' }}
-                >
-                  Fill out the form below and we'll get back to you within 24 hours
-                </Typography>
+      {/* 2. MAIN CONTENT */}
+      <Container maxWidth="lg" sx={{ mt: -8, position: 'relative', zIndex: 20 }}>
+        <Grid container spacing={4}>
+          
+          {/* LEFT: Contact Form */}
+          <Grid size={{ xs: 12, md: 7 }}>
+            <Paper elevation={3} sx={{ p: { xs: 3, md: 5 }, borderRadius: 4 }}>
+              <Typography variant="h4" color="primary" gutterBottom>
+                Send Us a Message
+              </Typography>
+              <Typography variant="body1" color="text.secondary" paragraph sx={{ mb: 4 }}>
+                Fill out the form below and we'll get back to you within 24 hours.
+              </Typography>
 
-                {submitted && (
-                  <Alert severity="success" className="mb-6">
-                    Thank you for your message! We'll be in touch soon.
-                  </Alert>
-                )}
+              {submitted && (
+                <Alert severity="success" sx={{ mb: 4 }}>
+                  Thank you for your message! We'll be in touch soon.
+                </Alert>
+              )}
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit}>
+                <Stack spacing={3}>
                   <TextField
                     fullWidth
                     label="Full Name"
@@ -135,12 +129,6 @@ const ContactPage: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    variant="outlined"
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        fontFamily: 'Source Serif Pro, serif',
-                      },
-                    }}
                   />
 
                   <TextField
@@ -151,43 +139,25 @@ const ContactPage: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    variant="outlined"
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        fontFamily: 'Source Serif Pro, serif',
-                      },
-                    }}
                   />
 
                   <TextField
                     fullWidth
-                    label="Organization"
+                    label="Organization / Company"
                     name="organization"
                     value={formData.organization}
                     onChange={handleChange}
                     required
-                    variant="outlined"
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        fontFamily: 'Source Serif Pro, serif',
-                      },
-                    }}
                   />
 
                   <TextField
                     fullWidth
                     select
-                    label="Package of Interest"
+                    label="Area of Interest"
                     name="packageInterest"
                     value={formData.packageInterest}
                     onChange={handleChange}
                     required
-                    variant="outlined"
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        fontFamily: 'Source Serif Pro, serif',
-                      },
-                    }}
                   >
                     {packages.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
@@ -204,206 +174,131 @@ const ContactPage: React.FC = () => {
                     onChange={handleChange}
                     required
                     multiline
-                    rows={6}
-                    variant="outlined"
+                    rows={5}
                     placeholder="Tell us about your safeguarding needs..."
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        fontFamily: 'Source Serif Pro, serif',
-                      },
-                    }}
                   />
 
                   <Button
                     type="submit"
                     variant="contained"
+                    color="secondary"
                     size="large"
-                    fullWidth
-                    className="bg-[#00897b] hover:bg-[#00695c] text-white py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                    sx={{ fontFamily: 'Montserrat, sans-serif' }}
+                    endIcon={<SendIcon />}
+                    sx={{ py: 2, fontSize: '1.1rem', mt: 2 }}
                   >
                     Send Message
                   </Button>
-                </form>
-              </CardContent>
-            </Card>
+                </Stack>
+              </form>
+            </Paper>
           </Grid>
 
-          {/* Contact Information */}
-          <Grid item xs={12} md={5}>
-            <div className="space-y-6">
-              {/* Contact Info Card */}
-              <Card className="shadow-lg border border-[#00897b]/20">
-                <CardContent className="p-8">
-                  <Typography
-                    variant="h4"
-                    className="text-2xl font-bold mb-6 text-[#1e3a5f]"
-                    sx={{ fontFamily: 'Playfair Display, serif' }}
-                  >
+          {/* RIGHT: Contact Information */}
+          <Grid size={{ xs: 12, md: 5 }}>
+            <Stack spacing={3}>
+              
+              {/* Info Card */}
+              <Card sx={{ borderRadius: 4, boxShadow: 3 }}>
+                <CardContent sx={{ p: 4 }}>
+                  <Typography variant="h5" color="primary" gutterBottom sx={{ mb: 3 }}>
                     Contact Information
                   </Typography>
 
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-[#00897b]/10 p-3 rounded-lg">
-                        <EmailIcon sx={{ fontSize: 28, color: '#00897b' }} />
-                      </div>
-                      <div>
-                        <Typography
-                          variant="subtitle2"
-                          className="font-semibold text-gray-700 mb-1"
-                          sx={{ fontFamily: 'Montserrat, sans-serif' }}
-                        >
-                          Email
-                        </Typography>
-                        <Typography
-                          variant="body1"
-                          className="text-gray-600"
-                          sx={{ fontFamily: 'Source Serif Pro, serif' }}
-                        >
-                          info@shieldsafeguarding.org
-                        </Typography>
-                      </div>
-                    </div>
+                  <Stack spacing={3}>
+                    <Box display="flex" gap={2}>
+                      <Box sx={{ p: 1.5, borderRadius: 2, bgcolor: 'secondary.light', color: 'white' }}>
+                        <EmailIcon />
+                      </Box>
+                      <Box>
+                        <Typography variant="subtitle2" color="text.secondary">Email</Typography>
+                        <Typography variant="body1" fontWeight={600}>info@shieldsafeguarding.org</Typography>
+                      </Box>
+                    </Box>
 
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-[#00897b]/10 p-3 rounded-lg">
-                        <PhoneIcon sx={{ fontSize: 28, color: '#00897b' }} />
-                      </div>
-                      <div>
-                        <Typography
-                          variant="subtitle2"
-                          className="font-semibold text-gray-700 mb-1"
-                          sx={{ fontFamily: 'Montserrat, sans-serif' }}
-                        >
-                          Phone
-                        </Typography>
-                        <Typography
-                          variant="body1"
-                          className="text-gray-600"
-                          sx={{ fontFamily: 'Source Serif Pro, serif' }}
-                        >
-                          +254 XXX XXX XXX
-                        </Typography>
-                      </div>
-                    </div>
+                    <Box display="flex" gap={2}>
+                      <Box sx={{ p: 1.5, borderRadius: 2, bgcolor: 'secondary.light', color: 'white' }}>
+                        <PhoneIcon />
+                      </Box>
+                      <Box>
+                        <Typography variant="subtitle2" color="text.secondary">Phone</Typography>
+                        <Typography variant="body1" fontWeight={600}>+254 7XX XXX XXX</Typography>
+                      </Box>
+                    </Box>
 
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-[#00897b]/10 p-3 rounded-lg">
-                        <LocationOnIcon sx={{ fontSize: 28, color: '#00897b' }} />
-                      </div>
-                      <div>
-                        <Typography
-                          variant="subtitle2"
-                          className="font-semibold text-gray-700 mb-1"
-                          sx={{ fontFamily: 'Montserrat, sans-serif' }}
-                        >
-                          Location
-                        </Typography>
-                        <Typography
-                          variant="body1"
-                          className="text-gray-600"
-                          sx={{ fontFamily: 'Source Serif Pro, serif' }}
-                        >
-                          Nairobi, Kenya
-                        </Typography>
-                      </div>
-                    </div>
-                  </div>
+                    <Box display="flex" gap={2}>
+                      <Box sx={{ p: 1.5, borderRadius: 2, bgcolor: 'secondary.light', color: 'white' }}>
+                        <LocationOnIcon />
+                      </Box>
+                      <Box>
+                        <Typography variant="subtitle2" color="text.secondary">Location</Typography>
+                        <Typography variant="body1" fontWeight={600}>Nairobi, Kenya</Typography>
+                        <Typography variant="caption" color="text.secondary">Available for global deployment</Typography>
+                      </Box>
+                    </Box>
+                  </Stack>
                 </CardContent>
               </Card>
 
-              {/* Office Hours Card */}
-              <Card className="shadow-lg bg-gradient-to-br from-[#1e3a5f] to-[#00897b] text-white">
-                <CardContent className="p-8">
-                  <Typography
-                    variant="h5"
-                    className="text-xl font-bold mb-4"
-                    sx={{ fontFamily: 'Montserrat, sans-serif' }}
-                  >
-                    Office Hours
+              {/* Office Hours */}
+              <Card sx={{ borderRadius: 4, boxShadow: 3, bgcolor: 'primary.main', color: 'white' }}>
+                <CardContent sx={{ p: 4 }}>
+                  <Typography variant="h6" gutterBottom color="inherit">
+                    Office Hours (EAT)
                   </Typography>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <Typography
-                        variant="body1"
-                        sx={{ fontFamily: 'Source Serif Pro, serif' }}
-                      >
-                        Monday - Friday
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        className="font-semibold"
-                        sx={{ fontFamily: 'Montserrat, sans-serif' }}
-                      >
-                        9:00 AM - 5:00 PM
-                      </Typography>
-                    </div>
-                    <div className="flex justify-between">
-                      <Typography
-                        variant="body1"
-                        sx={{ fontFamily: 'Source Serif Pro, serif' }}
-                      >
-                        Saturday - Sunday
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        className="font-semibold"
-                        sx={{ fontFamily: 'Montserrat, sans-serif' }}
-                      >
-                        Closed
-                      </Typography>
-                    </div>
-                  </div>
+                  <Box display="flex" justifyContent="space-between" mb={1}>
+                    <Typography variant="body2" sx={{ opacity: 0.8 }}>Monday - Friday</Typography>
+                    <Typography variant="body2" fontWeight="bold">9:00 AM - 5:00 PM</Typography>
+                  </Box>
+                  <Box display="flex" justifyContent="space-between">
+                    <Typography variant="body2" sx={{ opacity: 0.8 }}>Weekends</Typography>
+                    <Typography variant="body2" fontWeight="bold">Closed</Typography>
+                  </Box>
                 </CardContent>
               </Card>
 
-              {/* Quick Note */}
-              <Card className="shadow-lg bg-[#fff8e1] border-l-4 border-[#bf8b2e]">
-                <CardContent className="p-6">
-                  <Typography
-                    variant="body1"
-                    className="text-gray-700"
-                    sx={{ fontFamily: 'Source Serif Pro, serif' }}
-                  >
-                    <strong>Note:</strong> We typically respond to all inquiries
-                    within 24 hours during business days. For urgent matters, please
-                    indicate "Urgent" in your message subject.
-                  </Typography>
-                </CardContent>
-              </Card>
-            </div>
+              {/* Urgent Note */}
+              <Alert 
+                severity="warning" 
+                variant="filled"
+                sx={{ borderRadius: 4, bgcolor: 'warning.main', color: 'primary.main', fontWeight: 500 }}
+              >
+                For urgent safeguarding incidents, please mark your email subject line with "URGENT".
+              </Alert>
+
+            </Stack>
           </Grid>
         </Grid>
       </Container>
 
-      {/* Map Placeholder (can be replaced with actual map integration) */}
-      <Box className="bg-gray-200 py-16">
-        <Container maxWidth="lg">
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden" style={{ height: '400px' }}>
-            <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-              <div className="text-center">
-                <LocationOnIcon sx={{ fontSize: 72, color: '#00897b', mb: 2 }} />
-                <Typography
-                  variant="h5"
-                  className="text-gray-600 font-semibold"
-                  sx={{ fontFamily: 'Montserrat, sans-serif' }}
-                >
-                  Nairobi, Kenya
-                </Typography>
-                <Typography
-                  variant="body2"
-                  className="text-gray-500 mt-2"
-                  sx={{ fontFamily: 'Source Serif Pro, serif' }}
-                >
-                  Map integration coming soon
-                </Typography>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Box>
-    </div>
+      {/* 3. MAP PLACEHOLDER */}
+      <Container maxWidth="lg" sx={{ mt: 8 }}>
+        <Paper 
+            elevation={2}
+            sx={{ 
+                height: 400, 
+                borderRadius: 4, 
+                overflow: 'hidden', 
+                bgcolor: 'grey.100',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundImage: 'url(/images/map-placeholder.png)', // You can add a static map image here later
+                backgroundSize: 'cover'
+            }}
+        >
+            <Box textAlign="center" sx={{ bgcolor: 'rgba(255,255,255,0.9)', p: 4, borderRadius: 4, backdropFilter: 'blur(4px)' }}>
+                 <LocationOnIcon color="secondary" sx={{ fontSize: 60, mb: 1 }} />
+                 <Typography variant="h5" color="primary" fontWeight="bold">Nairobi, Kenya</Typography>
+                 <Typography variant="body2" color="text.secondary">HQ & Training Center</Typography>
+                 
+
+[Image of Nairobi Kenya Map Location]
+
+            </Box>
+        </Paper>
+      </Container>
+
+    </Box>
   );
 };
 

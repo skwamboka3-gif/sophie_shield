@@ -5,15 +5,23 @@ import {
   Container,
   Typography,
   Box,
-  Grid,
   Card,
   CardContent,
   Button,
   Chip,
+  Grid,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Stack,
 } from '@mui/material';
 import Link from 'next/link';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
+// Interface
 interface Package {
   id: string;
   title: string;
@@ -23,433 +31,353 @@ interface Package {
   gradient: string;
   description: string;
   whoItsFor: string[];
-  typicalProfile: string[];
   keyOutcomes: string[];
-  coreServices: string[];
 }
 
 const PackagesPage: React.FC = () => {
+  // Data
   const packages: Package[] = [
     {
       id: 'foundation',
       title: 'Foundation',
       subtitle: 'Start-Up & Readiness',
-      tagline: 'Strong foundations',
-      color: '#1e5f8c',
-      gradient: 'from-[#1e5f8c] to-[#2d7eb8]',
-      description: 'Safeguarding rooted in dignity enter drives and residential for success this entry level humanitarian.',
+      tagline: 'Strong Foundations',
+      color: '#1e5f8c', // Blue
+      gradient: 'linear-gradient(135deg, #1e5f8c 0%, #2d7eb8 100%)',
+      description: 'Build robust safeguarding systems from day one. For new organizations seeking to establish credible, dignity-centered safeguarding as part of their organizational DNA.',
       whoItsFor: [
-        'New organizations that recognize safeguarding must be part of their DNA',
-        'Start-ups seeking to establish credible systems from day one',
-        'Organizations preparing for funding applications that require safeguarding credentials',
-      ],
-      typicalProfile: [
-        'Newly formed organizations (less than 2 years old)',
-        'Limited or no formal safeguarding infrastructure',
-        'Teams with basic safeguarding awareness but no systematized approach',
-        'Organizations seeking donor eligibility',
+        'New organizations needing DNA-level safeguarding',
+        'Start-ups seeking credible systems from day one',
+        'Preparing for funding applications',
       ],
       keyOutcomes: [
-        'Development of SOPs',
-        'Preparation of comprehensive PSEA policies',
-        'Comprehensive safeguarding needs assessment',
-        'Development of core safeguarding documents',
-      ],
-      coreServices: [
-        'SOCA (Safeguarding Organizational Capacity Assessment)',
-        'Policy framework development',
-        'Foundational training',
-        'Safeguarding focal point establishment',
+        'Safeguarding Needs Assessment (SOCA)',
+        'Core Policies & SOPs Development',
+        'Foundational Staff Training',
+        'Focal Point Establishment',
       ],
     },
     {
       id: 'strengthen',
       title: 'Strengthen',
       subtitle: 'Institutional Systems',
-      tagline: 'From policy to practice',
-      color: '#00897b',
-      gradient: 'from-[#00897b] to-[#26a69a]',
-      description: 'Safeguarding rooted in dignity enter organizational leadership and residential cooperation commitment to regions stakeholders frameworks.',
+      tagline: 'From Policy to Practice',
+      color: '#00897b', // Teal
+      gradient: 'linear-gradient(135deg, #00897b 0%, #26a69a 100%)',
+      description: 'Transform existing policies into lived practice. For organizations ready to embed safeguarding deeply into their institutional culture and operational systems.',
       whoItsFor: [
-        'Typical profiles are humanitarian/development organizations who have any funding on humanitarian sector community',
-        'Organizations that have received grants and are committed to regions stakeholders frameworks',
-        'Safeguarding embedded institutional safeguarding systems',
-      ],
-      typicalProfile: [
-        'Development of SOPs',
-        'Comprehensive policies on accountability',
-        'Implementation of safeguarding mechanisms',
-        'Training for staff on response protocols',
+        'Orgs seeking to strengthen implementation',
+        'Moving from compliance to culture change',
+        'Preparing for expanded programming',
       ],
       keyOutcomes: [
-        'Developed safeguarding implementation plan',
-        'Training of staff and leadership',
-        'Improved case management and response systems',
-        'Strengthened institutional safeguarding culture',
-      ],
-      coreServices: [
-        'Review policies and frameworks',
-        'Development of SOPs',
-        'Case management systems',
-        'Process and whistle-blowing mechanisms',
-        'Development of complementary safeguarding protocols',
-        'Comprehensive institutional training',
+        'Policy Review & Enhancement',
+        'Case Management Systems Setup',
+        'Institution-wide Training',
+        'Accountability Mechanisms (FCRM)',
       ],
     },
     {
       id: 'assure',
       title: 'Assure',
       subtitle: 'Strategic & Donor Support',
-      tagline: 'Safeguarding you can stand behind',
-      color: '#7b1fa2',
-      gradient: 'from-[#7b1fa2] to-[#9c27b0]',
-      description: 'Assure your donors that safeguarding is measurable action in practice.',
+      tagline: 'Strategic Oversight',
+      color: '#7b1fa2', // Purple
+      gradient: 'linear-gradient(135deg, #7b1fa2 0%, #9c27b0 100%)',
+      description: 'Independent verification and strategic assurance. For mature organizations seeking donor compliance, third-party validation, and continuous improvement.',
       whoItsFor: [
-        'Organizations with established systems needing donor compliance verification',
-        'Mature organizations seeking strategic assurance',
-        'Donors who need independent audit of grantees',
-      ],
-      typicalProfile: [
-        'Experienced institutional safeguarding systems',
-        'Demonstrated track record in safeguarding',
-        'Seeking assurance on compliance and implementation',
+        'Established systems needing verification',
+        'Mature orgs seeking strategic assurance',
+        'Donors requiring independent audits',
       ],
       keyOutcomes: [
-        'Independent safeguarding audits',
-        'Assessment and verification of systems',
-        'Training of senior management',
-        'Development of risk mitigation strategies',
-      ],
-      coreServices: [
-        'Independent safeguarding audits',
-        'Due diligence assessments',
-        'Risk mitigation planning',
-        'Donor compliance reporting',
-        'Strategic safeguarding consultation',
-        'We also conduct extended safeguarding',
+        'Independent Safeguarding Audits',
+        'Compliance Verification Reporting',
+        'Risk Mitigation Strategy',
+        'Strategic Leadership Consultation',
       ],
     },
     {
       id: 'ethics',
       title: 'Ethics',
       subtitle: 'Corporate & Workplace',
-      tagline: 'Ethical workplaces',
-      color: '#616161',
-      gradient: 'from-[#616161] to-[#757575]',
-      description: 'Ethical workplaces that are committed to culture change.',
+      tagline: 'Ethical Workplaces',
+      color: '#455a64', // Blue Grey
+      gradient: 'linear-gradient(135deg, #455a64 0%, #757575 100%)',
+      description: 'Build ethical workplace cultures. For private sector organizations committed to preventing harassment and embedding ethical practice.',
       whoItsFor: [
-        'Private sector organizations committed to ethical workplace culture',
-        'Corporations seeking to mitigate workplace risk',
-        'Organizations addressing workplace harassment',
-      ],
-      typicalProfile: [
-        'Corporate entities with workplace ethics concerns',
-        'Organizations seeking to embed ethical practices',
-        'Private sector committed to culture change',
+        'Private sector committed to ethical culture',
+        'Corporations mitigating workplace risk',
+        'Addressing culture & ethics concerns',
       ],
       keyOutcomes: [
-        'Development of codes of conduct',
-        'Training on workplace ethics',
-        'Development of ethics frameworks',
-        'Risk mitigation strategies',
-      ],
-      coreServices: [
-        'Workplace culture assessments',
-        'Code of conduct development',
-        'Ethics training for all levels',
-        'Whistleblowing mechanism setup',
-        'Harassment prevention programs',
+        'Workplace Culture Assessments',
+        'Code of Conduct Development',
+        'Ethics Training (All Levels)',
+        'Confidential Reporting Mechanisms',
       ],
     },
   ];
 
   return (
-    <div className="bg-gradient-to-b from-white to-gray-50">
-      {/* Hero Section */}
+    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
+      
+      {/* 1. HERO SECTION */}
       <Box
-        className="bg-gradient-to-r from-[#1e3a5f] to-[#00897b] text-white py-20"
         sx={{
+          background: (theme) => `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+          color: 'white',
+          py: { xs: 8, md: 12 },
           position: 'relative',
           overflow: 'hidden',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)',
-          },
+          textAlign: 'center',
         }}
       >
-        <Container maxWidth="lg" className="relative z-10">
-          <Typography
-            variant="h1"
-            className="text-4xl md:text-6xl font-bold mb-6 text-center"
-            sx={{ fontFamily: 'Playfair Display, serif' }}
-          >
+         <Box
+          sx={{
+            position: 'absolute',
+            top: 0, left: 0, right: 0, bottom: 0,
+            opacity: 0.1,
+            backgroundImage: 'radial-gradient(circle at 70% 30%, #ffffff 2px, transparent 2px)',
+            backgroundSize: '40px 40px',
+          }}
+        />
+        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
+          <Typography variant="h1" sx={{ mb: 3, color: 'white' }}>
             Signature Packages
           </Typography>
-          <Typography
-            variant="h5"
-            className="text-xl md:text-2xl text-center text-white/90 max-w-3xl mx-auto"
-            sx={{ fontFamily: 'Source Serif Pro, serif' }}
-          >
-            Four pathways to embed safeguarding, dignity, and accountability in your organization
+          <Typography variant="h5" sx={{ maxWidth: '800px', mx: 'auto', opacity: 0.9, fontWeight: 400 }}>
+            Four pathways to embed safeguarding, dignity, and accountability in your organization.
           </Typography>
         </Container>
       </Box>
 
-      {/* Packages Grid */}
-      <Container maxWidth="xl" className="py-16">
+      {/* 2. PACKAGES GRID - 2 ROWS x 2 COLUMNS */}
+      <Container maxWidth="lg" sx={{ py: 10 }}>
         <Grid container spacing={4}>
           {packages.map((pkg, index) => (
-            <Grid item xs={12} md={6} lg={3} key={pkg.id}>
+            <Grid size={{ xs: 12, md: 6 }} key={pkg.id}>
               <Card
-                className="h-full hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col"
+                elevation={3}
                 sx={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  borderRadius: 4,
+                  overflow: 'hidden',
+                  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                  borderTop: `6px solid ${pkg.color}`,
+                  '&:hover': {
+                    transform: 'translateY(-8px)',
+                    boxShadow: 10,
+                  },
                   animation: `fadeInUp 0.6s ease-out ${index * 0.15}s backwards`,
-                  border: `2px solid ${pkg.color}20`,
                 }}
               >
-                {/* Header with gradient */}
+                {/* Header Gradient */}
                 <Box
-                  className={`bg-gradient-to-br ${pkg.gradient} text-white p-6`}
-                  sx={{ minHeight: '180px' }}
+                  sx={{
+                    background: pkg.gradient,
+                    p: 4,
+                    color: 'white',
+                  }}
                 >
-                  <Typography
-                    variant="h4"
-                    className="font-bold mb-2"
-                    sx={{ fontFamily: 'Montserrat, sans-serif' }}
-                  >
+                  <Typography variant="h4" fontWeight="bold" sx={{ fontFamily: 'Playfair Display, serif', mb: 1 }}>
                     {pkg.title}
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    className="text-white/90 mb-3"
-                    sx={{ fontFamily: 'Source Serif Pro, serif', fontSize: '0.95rem' }}
-                  >
+                  <Typography variant="subtitle1" sx={{ opacity: 0.9, mb: 2, fontFamily: 'Source Serif Pro, serif' }}>
                     {pkg.subtitle}
                   </Typography>
                   <Chip
                     label={pkg.tagline}
-                    className="bg-white/20 text-white font-semibold"
                     size="small"
+                    sx={{
+                      bgcolor: 'rgba(255,255,255,0.2)',
+                      color: 'white',
+                      fontWeight: 600,
+                      backdropFilter: 'blur(4px)',
+                    }}
                   />
                 </Box>
 
-                <CardContent className="flex-grow p-6">
-                  <Typography
-                    variant="body2"
-                    className="text-gray-600 mb-6 leading-relaxed"
-                    sx={{ fontFamily: 'Source Serif Pro, serif' }}
-                  >
+                <CardContent sx={{ p: 4, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                  <Typography variant="body1" color="text.secondary" paragraph sx={{ mb: 4 }}>
                     {pkg.description}
                   </Typography>
 
-                  <div className="space-y-4">
-                    <div>
-                      <Typography
-                        variant="subtitle2"
-                        className="font-semibold mb-2 text-[#1e3a5f] uppercase tracking-wide text-xs"
-                        sx={{ fontFamily: 'Montserrat, sans-serif' }}
-                      >
+                  <Grid container spacing={4}>
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                      <Typography variant="subtitle2" color="primary" gutterBottom sx={{ textTransform: 'uppercase', fontSize: '0.75rem' }}>
                         Who It's For
                       </Typography>
-                      <ul className="space-y-1">
-                        {pkg.whoItsFor.slice(0, 2).map((item, i) => (
-                          <li key={i} className="text-sm text-gray-600 flex items-start">
-                            <CheckCircleIcon
-                              sx={{ fontSize: 16, color: pkg.color, mr: 1, mt: 0.3, flexShrink: 0 }}
+                      <List dense disablePadding>
+                        {pkg.whoItsFor.map((item, i) => (
+                          <ListItem key={i} disableGutters sx={{ alignItems: 'flex-start', py: 0.5 }}>
+                            <ListItemIcon sx={{ minWidth: 24, mt: 0.5 }}>
+                              <CheckCircleIcon sx={{ fontSize: 16, color: pkg.color }} />
+                            </ListItemIcon>
+                            <ListItemText 
+                                primary={item} 
+                                primaryTypographyProps={{ variant: 'body2', sx: { lineHeight: 1.3 } }} 
                             />
-                            <span style={{ fontFamily: 'Source Serif Pro, serif' }}>{item}</span>
-                          </li>
+                          </ListItem>
                         ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <Typography
-                        variant="subtitle2"
-                        className="font-semibold mb-2 text-[#1e3a5f] uppercase tracking-wide text-xs"
-                        sx={{ fontFamily: 'Montserrat, sans-serif' }}
-                      >
+                      </List>
+                    </Grid>
+                    
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                      <Typography variant="subtitle2" color="primary" gutterBottom sx={{ textTransform: 'uppercase', fontSize: '0.75rem' }}>
                         Key Outcomes
                       </Typography>
-                      <ul className="space-y-1">
-                        {pkg.keyOutcomes.slice(0, 3).map((item, i) => (
-                          <li key={i} className="text-sm text-gray-600 flex items-start">
-                            <CheckCircleIcon
-                              sx={{ fontSize: 16, color: pkg.color, mr: 1, mt: 0.3, flexShrink: 0 }}
+                      <List dense disablePadding>
+                        {pkg.keyOutcomes.map((item, i) => (
+                          <ListItem key={i} disableGutters sx={{ alignItems: 'flex-start', py: 0.5 }}>
+                            <ListItemIcon sx={{ minWidth: 24, mt: 0.5 }}>
+                              <CheckCircleIcon sx={{ fontSize: 16, color: pkg.color }} />
+                            </ListItemIcon>
+                            <ListItemText 
+                                primary={item} 
+                                primaryTypographyProps={{ variant: 'body2', sx: { lineHeight: 1.3 } }} 
                             />
-                            <span style={{ fontFamily: 'Source Serif Pro, serif' }}>{item}</span>
-                          </li>
+                          </ListItem>
                         ))}
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
+                      </List>
+                    </Grid>
+                  </Grid>
 
-                <Box className="p-6 pt-0">
-                  <Button
-                    component={Link}
-                    href={`/packages/${pkg.id}`}
-                    variant="contained"
-                    fullWidth
-                    className="text-white shadow-md hover:shadow-lg transition-all duration-300"
-                    sx={{
-                      bgcolor: pkg.color,
-                      '&:hover': {
+                  <Box sx={{ mt: 'auto', pt: 4 }}>
+                    <Button
+                      component={Link}
+                      href={`/packages/${pkg.id}`}
+                      variant="contained"
+                      fullWidth
+                      endIcon={<ArrowForwardIcon />}
+                      sx={{
                         bgcolor: pkg.color,
-                        filter: 'brightness(1.1)',
-                      },
-                    }}
-                  >
-                    View Details
-                  </Button>
-                </Box>
+                        '&:hover': {
+                          bgcolor: pkg.color,
+                          filter: 'brightness(0.9)',
+                        },
+                      }}
+                    >
+                      View Full Details
+                    </Button>
+                  </Box>
+                </CardContent>
               </Card>
             </Grid>
           ))}
         </Grid>
       </Container>
 
-      {/* Comparison Table Section */}
-      <Box className="bg-white py-16">
+      {/* 3. NUMBERED COMPARISON / PATHWAY */}
+      <Box sx={{ bgcolor: 'white', py: 10 }}>
         <Container maxWidth="lg">
-          <Typography
-            variant="h2"
-            className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#1e3a5f]"
-            sx={{ fontFamily: 'Playfair Display, serif' }}
-          >
-            Choose Your Path
-          </Typography>
-          <Typography
-            variant="body1"
-            className="text-center text-gray-600 mb-12 max-w-2xl mx-auto"
-            sx={{ fontFamily: 'Source Serif Pro, serif' }}
-          >
-            Each package is designed for organizations at different stages of their safeguarding journey
-          </Typography>
+          <Box textAlign="center" mb={8}>
+            <Typography variant="h2" color="primary" gutterBottom>
+              Choose Your Path
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '700px', mx: 'auto' }}>
+              Each package is designed for organizations at different stages of their safeguarding journey.
+            </Typography>
+          </Box>
 
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse bg-white shadow-lg rounded-lg overflow-hidden">
-              <thead>
-                <tr className="bg-gradient-to-r from-[#1e3a5f] to-[#00897b] text-white">
-                  <th className="p-4 text-left font-semibold" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                    Feature
-                  </th>
-                  {packages.map((pkg) => (
-                    <th
-                      key={pkg.id}
-                      className="p-4 text-center font-semibold"
-                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+          <Grid container spacing={4}>
+            {packages.map((pkg, index) => (
+              <Grid size={{ xs: 12, sm: 6, md: 3 }} key={pkg.id}>
+                <Card 
+                    elevation={0}
+                    sx={{ 
+                        border: `1px solid`, 
+                        borderColor: 'divider',
+                        textAlign: 'center', 
+                        height: '100%',
+                        transition: '0.3s',
+                        '&:hover': { borderColor: pkg.color, boxShadow: 4 } 
+                    }}
+                >
+                  <CardContent sx={{ p: 4 }}>
+                    <Box
+                      sx={{
+                        width: 60,
+                        height: 60,
+                        borderRadius: '50%',
+                        bgcolor: `${pkg.color}20`, // 20% opacity hex
+                        color: pkg.color,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        mx: 'auto',
+                        mb: 2,
+                      }}
                     >
+                      <Typography variant="h4" fontWeight="bold">
+                        {index + 1}
+                      </Typography>
+                    </Box>
+                    <Typography variant="h6" color="primary" gutterBottom>
                       {pkg.title}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b hover:bg-gray-50">
-                  <td className="p-4 font-medium text-gray-700">Organization Stage</td>
-                  <td className="p-4 text-center text-sm">Start-up / New</td>
-                  <td className="p-4 text-center text-sm">Growing / Developing</td>
-                  <td className="p-4 text-center text-sm">Mature / Established</td>
-                  <td className="p-4 text-center text-sm">Corporate / Private</td>
-                </tr>
-                <tr className="border-b hover:bg-gray-50">
-                  <td className="p-4 font-medium text-gray-700">SOCA Assessment</td>
-                  <td className="p-4 text-center">
-                    <CheckCircleIcon sx={{ color: '#1e5f8c' }} />
-                  </td>
-                  <td className="p-4 text-center">
-                    <CheckCircleIcon sx={{ color: '#00897b' }} />
-                  </td>
-                  <td className="p-4 text-center">
-                    <CheckCircleIcon sx={{ color: '#7b1fa2' }} />
-                  </td>
-                  <td className="p-4 text-center text-gray-400">—</td>
-                </tr>
-                <tr className="border-b hover:bg-gray-50">
-                  <td className="p-4 font-medium text-gray-700">Policy Development</td>
-                  <td className="p-4 text-center">
-                    <CheckCircleIcon sx={{ color: '#1e5f8c' }} />
-                  </td>
-                  <td className="p-4 text-center">
-                    <CheckCircleIcon sx={{ color: '#00897b' }} />
-                  </td>
-                  <td className="p-4 text-center text-sm">Review</td>
-                  <td className="p-4 text-center">
-                    <CheckCircleIcon sx={{ color: '#616161' }} />
-                  </td>
-                </tr>
-                <tr className="border-b hover:bg-gray-50">
-                  <td className="p-4 font-medium text-gray-700">Training Programs</td>
-                  <td className="p-4 text-center text-sm">Basic</td>
-                  <td className="p-4 text-center text-sm">Comprehensive</td>
-                  <td className="p-4 text-center text-sm">Advanced</td>
-                  <td className="p-4 text-center text-sm">Specialized</td>
-                </tr>
-                <tr className="border-b hover:bg-gray-50">
-                  <td className="p-4 font-medium text-gray-700">Independent Audit</td>
-                  <td className="p-4 text-center text-gray-400">—</td>
-                  <td className="p-4 text-center text-gray-400">—</td>
-                  <td className="p-4 text-center">
-                    <CheckCircleIcon sx={{ color: '#7b1fa2' }} />
-                  </td>
-                  <td className="p-4 text-center text-gray-400">—</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {pkg.subtitle}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
         </Container>
       </Box>
 
-      {/* CTA Section */}
-      <Box className="bg-gradient-to-r from-[#00897b] to-[#1e3a5f] text-white py-16">
-        <Container maxWidth="md" className="text-center">
-          <Typography
-            variant="h3"
-            className="text-3xl md:text-4xl font-bold mb-6"
-            sx={{ fontFamily: 'Playfair Display, serif' }}
-          >
-            Not sure which package is right for you?
+      {/* 4. CTA SECTION */}
+      <Box
+        sx={{
+          background: (theme) => `linear-gradient(to right, ${theme.palette.secondary.main}, ${theme.palette.primary.main})`,
+          color: 'white',
+          py: 10,
+          textAlign: 'center',
+        }}
+      >
+        <Container maxWidth="md">
+          <Typography variant="h3" gutterBottom sx={{ color: 'white' }}>
+            Not Sure Which Package Is Right for You?
           </Typography>
-          <Typography
-            variant="body1"
-            className="text-xl mb-8 text-white/90"
-            sx={{ fontFamily: 'Source Serif Pro, serif' }}
-          >
-            Schedule a consultation and we'll help you identify the best pathway for your organization
+          <Typography variant="h6" sx={{ mb: 5, fontWeight: 400, opacity: 0.9 }}>
+            Schedule a consultation and we'll help you identify the best pathway for your organization's unique safeguarding needs.
           </Typography>
           <Button
             component={Link}
             href="/contact"
             variant="contained"
+            color="warning" // Uses the Gold/Ochre theme color
             size="large"
-            className="bg-[#bf8b2e] hover:bg-[#d4a857] text-white px-10 py-4 text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+            startIcon={<CalendarMonthIcon />}
+            sx={{
+              px: 6,
+              py: 2,
+              fontSize: '1.1rem',
+              boxShadow: 4,
+            }}
           >
             Schedule Consultation
           </Button>
         </Container>
       </Box>
 
-      <style>
-        {`
-          @keyframes fadeInUp {
-            from {
-              opacity: 0;
-              transform: translateY(30px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
+      {/* Global CSS for Animations */}
+      <style jsx global>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
           }
-        `}
-      </style>
-    </div>
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+    </Box>
   );
 };
 
