@@ -27,7 +27,7 @@ const SOCIAL_LINKS = [
   { icon: <FacebookIcon />, href: '#' },
   { icon: <TwitterIcon />, href: '#' },
   { icon: <LinkedInIcon />, href: '#' },
-  { icon: <EmailIcon />, href: 'mailto:info@shieldsafeguarding.org' },
+  { icon: <EmailIcon />, href: 'mailto:info@shieldsafeguarding.co.ke' },
 ];
 
 const Footer: React.FC = () => {
@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
     <Box component="footer" sx={{ bgcolor: '#0A2342', color: 'white' }}>
       <Container maxWidth="lg" sx={{ py: 8 }}>
         <Grid container spacing={6}>
-          
+
           {/* 1. BRAND SECTION */}
           <Grid size={{ xs: 12, md: 4 }}>
             <Box display="flex" alignItems="center" gap={2} mb={2}>
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
                   justifyContent: 'center',
                 }}
               >
-                 {/* Re-using your SVG but cleaned up */}
+                {/* Re-using your SVG but cleaned up */}
                 <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16 4L4 10V14C4 21.18 8.84 27.62 16 29C23.16 27.62 28 21.18 28 14V10L16 4Z" fill="white" />
                   <path d="M12 16L15 19L21 13" stroke="#0A2342" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -74,9 +74,9 @@ const Footer: React.FC = () => {
 
             <Box display="flex" gap={1}>
               {SOCIAL_LINKS.map((social, index) => (
-                <IconButton 
-                  key={index} 
-                  size="small" 
+                <IconButton
+                  key={index}
+                  size="small"
                   sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)', color: 'warning.main' } }}
                   href={social.href}
                 >
@@ -126,8 +126,8 @@ const Footer: React.FC = () => {
             <Box display="flex" flexDirection="column" gap={2}>
               <Box>
                 <Typography variant="caption" display="block" sx={{ opacity: 0.5 }}>EMAIL</Typography>
-                <Link href="mailto:info@shieldsafeguarding.org" style={{ textDecoration: 'none', color: 'white' }}>
-                    <Typography variant="body2" sx={{ '&:hover': { color: 'warning.main' } }}>info@shieldsafeguarding.org</Typography>
+                <Link href="mailto:info@shieldsafeguarding.co.ke" style={{ textDecoration: 'none', color: 'white' }}>
+                  <Typography variant="body2" sx={{ '&:hover': { color: 'warning.main' } }}>info@shieldsafeguarding.co.ke</Typography>
                 </Link>
               </Box>
               <Box>

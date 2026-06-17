@@ -68,7 +68,7 @@ const ContactPage: React.FC = () => {
 
   return (
     <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', pb: 8 }}>
-      
+
       {/* 1. HERO SECTION */}
       <Box
         sx={{
@@ -89,7 +89,7 @@ const ContactPage: React.FC = () => {
             backgroundSize: '30px 30px',
           }}
         />
-        
+
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
           <Typography variant="h1" sx={{ mb: 3, color: 'white' }}>
             Get In Touch
@@ -103,7 +103,7 @@ const ContactPage: React.FC = () => {
       {/* 2. MAIN CONTENT */}
       <Container maxWidth="lg" sx={{ mt: -8, position: 'relative', zIndex: 20 }}>
         <Grid container spacing={4}>
-          
+
           {/* LEFT: Contact Form */}
           <Grid size={{ xs: 12, md: 7 }}>
             <Paper elevation={3} sx={{ p: { xs: 3, md: 5 }, borderRadius: 4 }}>
@@ -196,7 +196,7 @@ const ContactPage: React.FC = () => {
           {/* RIGHT: Contact Information */}
           <Grid size={{ xs: 12, md: 5 }}>
             <Stack spacing={3}>
-              
+
               {/* Info Card */}
               <Card sx={{ borderRadius: 4, boxShadow: 3 }}>
                 <CardContent sx={{ p: 4 }}>
@@ -211,7 +211,7 @@ const ContactPage: React.FC = () => {
                       </Box>
                       <Box>
                         <Typography variant="subtitle2" color="text.secondary">Email</Typography>
-                        <Typography variant="body1" fontWeight={600}>info@shieldsafeguarding.org</Typography>
+                        <Typography variant="body1" fontWeight={600}>info@shieldsafeguarding.co.ke</Typography>
                       </Box>
                     </Box>
 
@@ -257,8 +257,8 @@ const ContactPage: React.FC = () => {
               </Card>
 
               {/* Urgent Note */}
-              <Alert 
-                severity="warning" 
+              <Alert
+                severity="warning"
                 variant="filled"
                 sx={{ borderRadius: 4, bgcolor: 'warning.main', color: 'primary.main', fontWeight: 500 }}
               >
@@ -272,29 +272,29 @@ const ContactPage: React.FC = () => {
 
       {/* 3. MAP PLACEHOLDER */}
       <Container maxWidth="lg" sx={{ mt: 8 }}>
-        <Paper 
-            elevation={2}
-            sx={{ 
-                height: 400, 
-                borderRadius: 4, 
-                overflow: 'hidden', 
-                bgcolor: 'grey.100',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundImage: 'url(/images/map-placeholder.png)', // You can add a static map image here later
-                backgroundSize: 'cover'
-            }}
+        <Paper
+          elevation={2}
+          sx={{
+            height: 400,
+            borderRadius: 4,
+            overflow: 'hidden',
+            bgcolor: 'grey.100',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundImage: 'url(/images/map-placeholder.png)', // You can add a static map image here later
+            backgroundSize: 'cover'
+          }}
         >
-            <Box textAlign="center" sx={{ bgcolor: 'rgba(255,255,255,0.9)', p: 4, borderRadius: 4, backdropFilter: 'blur(4px)' }}>
-                 <LocationOnIcon color="secondary" sx={{ fontSize: 60, mb: 1 }} />
-                 <Typography variant="h5" color="primary" fontWeight="bold">Nairobi, Kenya</Typography>
-                 <Typography variant="body2" color="text.secondary">HQ & Training Center</Typography>
-                 
+          <Box textAlign="center" sx={{ bgcolor: 'rgba(255,255,255,0.9)', p: 4, borderRadius: 4, backdropFilter: 'blur(4px)' }}>
+            <LocationOnIcon color="secondary" sx={{ fontSize: 60, mb: 1 }} />
+            <Typography variant="h5" color="primary" fontWeight="bold">Nairobi, Kenya</Typography>
+            <Typography variant="body2" color="text.secondary">HQ & Training Center</Typography>
 
-[Image of Nairobi Kenya Map Location]
 
-            </Box>
+            [Image of Nairobi Kenya Map Location]
+
+          </Box>
         </Paper>
       </Container>
 
