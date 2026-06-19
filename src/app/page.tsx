@@ -92,7 +92,7 @@ export default function Home() {
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
           <Grid container spacing={6} alignItems="center">
            
-            <Grid size={{ xs: 12, md: 6 }} xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
            
               
               <Typography 
@@ -171,7 +171,7 @@ export default function Home() {
               </Stack>
             </Grid>
             
-            <Grid size={{ xs: 12, md: 6 }} xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <Box 
                 sx={{ 
                   width: '100%', 
