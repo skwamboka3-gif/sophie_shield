@@ -3,13 +3,13 @@
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 I've created a complete, professional website for Shield Safeguarding & Accountability Practice using React, TypeScript, Material-UI, and Tailwind CSS. The website is modern, fully responsive, and ready for deployment.
 
 ---
 
-## ✨ Key Features Delivered
+## Key Features Delivered
 
 ### 1. **Complete Website Structure**
 - ✅ Home page with hero section, package overview, and values
